@@ -1,0 +1,26 @@
+<?php echo $this->form->renderForm(false); ?>
+<table class="general" summary="Sistema" style="width:50%">
+        <caption>NUEVAS REFERENCIAS</caption>
+        <tbody>          
+            <tr>
+                <th align="right" width="30%">
+                    <?php 
+                    echo $this->form->getElement(Application_Form_Referencia::E_REFERENCIA)->getLabel();
+                    ?>
+                </th>
+                <td><?php
+                    echo $this->form->getElement(Application_Form_Referencia::E_REFERENCIA)->renderViewHelper(),
+                    $this->form->getElement(Application_Form_Referencia::E_REFERENCIA)->renderDescription(),
+                    $this->form->getElement(Application_Form_Referencia::E_REFERENCIA)->renderErrors();
+                    ?> 
+                </td>
+            </tr>
+                       
+    </table>
+
+    <p align = 'center'>
+        <?php
+        echo $this->form->getElement(Application_Form_Referencia::E_GUARDAR)->renderViewHelper();
+        ?>
+        
+    </p>

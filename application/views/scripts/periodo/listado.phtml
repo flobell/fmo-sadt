@@ -1,0 +1,54 @@
+<div>
+    <table class="general" summary="PERÍODOS">
+        <caption>APERTURA / CIERRE DE PERÍODOS</caption>
+        <thead>
+            <tr>
+                <th>Fecha de Inicio de Selección</th>
+                <th>Fecha de Finalización de Selección</th>
+                <th>Estado</th>
+                <th width="100px" colspan = "2">Opciones
+                    <a title="Nuevo Período" href="<?php echo $this->url(array('controller' => 'periodo', 'action' => 'nuevo')); ?>">
+                        <?php echo $this->img('ico_agregar.png'); ?>
+                    </a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if (count($this->periodos)):
+                foreach ($this->periodos as $periodo):
+                    ?>
+                    <tr>
+                        <td><?php echo Fmo_Util::stringToZendDate($periodo->fecha_inicio)->get(Zend_Date::DATES); ?></td>
+                        <td><?php echo Fmo_Util::stringToZendDate($periodo->fecha_fin)->get(Zend_Date::DATES); ?></td>
+                        <td><?php echo $periodo->estado; ?></td>
+                        <td align="center">
+                            <a title="Editar Período" style="text-decoration: none;" href=<?php echo $this->url(array('controller' => 'periodo', 'action' => 'editar', 'id' => $periodo->id), null, true); ?> >
+                                <?php echo $this->img('ico_editar.png'); ?>
+                            </a>
+                        </td>
+                        <td>
+                            <a title="Eliminar Período" style="text-decoration: none;" href=<?php echo $this->url(array('controller' => 'periodo', 'action' => 'eliminar', 'id' => $periodo->id), null, true); ?> >
+                                <?php echo $this->img('ico_eliminar.png'); ?>
+                            </a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="5" align="center">No se ha encontrado ningún período.</td>
+                </tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
+</div>
+<?php
+if ($this->periodos instanceof Zend_Paginator):
+    echo '<br/>', $this->paginationControl($this->periodos);
+endif;
+?>
+<br/>
+<br/>
+
+
+

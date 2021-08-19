@@ -1,0 +1,194 @@
+<?php echo $this->form('buscarForm', array('method' => Zend_Form::METHOD_POST, 'action' => $this->url(), 'enctype' => Zend_form::ENCTYPE_MULTIPART)); ?>
+<table class="general" style="width:50%">
+    <caption>Información del Trabajador</caption>
+    <tr>
+        <th>
+            Ficha
+        </th>
+        <td>
+            <?php echo $this->escape($this->usuario->ficha); ?>
+        </td>
+        <th>
+            Cedula
+        </th>
+        <td>
+            <?php echo $this->escape($this->usuario->cedula); ?>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <td>
+            <?php echo $this->escape($this->usuario->nombre), ' ', $this->escape($this->usuario->apellido); ?>
+        </td>
+        <th>
+            Cargo
+        </th>
+        <td>
+            <?php echo $this->escape($this->usuario->{Fmo_Model_Personal::CARGO}); ?>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Gerencia
+        </th>
+        <td>
+            <?php echo $this->escape($this->centro[2]->centro_costo); ?>
+        </td>
+        <th>
+            Departamento
+        </th>
+        <td>
+            <?php echo $this->escape($this->centro[1]->centro_costo); ?>
+        </td>
+    </tr>
+</table>
+
+
+<table class="general" summary="Sistema" style="width:50%">
+    <caption>Dirección de Domicilio Actual</caption>
+    <?php
+    if ($this->direccion) {
+        ?>
+        <tbody>
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Direccion::E_PARROQUIA)->getLabel();
+                    ?></th>
+                <td><?php
+                    echo $this->escape($this->direccion->nombre_parroquia);
+                    ?> 
+                </td>
+            </tr>
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Direccion::E_ZONA)->getLabel();
+                    ?></th>
+                <td><?php
+                    echo $this->escape($this->direccion->nombre_zona);
+                    ?>
+                </td>
+            </tr>
+            <?php if ($this->direccion->celular != '0') { ?>
+                <tr>
+                    <th align="right" width="30%">
+                        <?php echo $this->form->getElement(Application_Form_Direccion::E_TELEFONO_CELULAR)->getLabel();
+                        ?></th>
+                    <td><?php echo $this->escape($this->direccion->celular); ?>
+                    </td>
+                </tr> <?php
+            }
+            ?> 
+            <?php if ($this->direccion->telefono != '') { ?>
+                <tr>
+                    <th align="right" width="30%">
+                        <?php echo $this->form->getElement(Application_Form_Direccion::E_TELEFONO_CASA)->getLabel();
+                        ?></th>
+                    <td><?php echo $this->escape($this->direccion->telefono); ?>
+                    </td>
+                </tr> <?php
+            }
+            ?>
+            <?php if ($this->direccion->telefono_oficina != '') { ?>
+                <tr>
+                    <th align="right" width="30%">
+                        <?php echo $this->form->getElement(Application_Form_Direccion::E_TELEFONO_OFICINA)->getLabel();
+                        ?></th>
+                    <td><?php echo $this->escape($this->direccion->telefono_oficina); ?>
+                    </td>
+                </tr> <?php
+            }
+            ?>
+            <?php if ($this->direccion->sector != '') { ?>
+                <tr>
+                    <th align="right" width="30%">
+                        <?php echo $this->form->getElement(Application_Form_Direccion::E_SECTOR)->getLabel();
+                        ?></th>
+                    <td><?php echo $this->escape($this->direccion->sector); ?>
+                    </td>
+                </tr> <?php
+            }
+            ?> 
+            <?php if ($this->direccion->avenida != '') { ?>
+                <tr>
+                    <th align="right" width="30%">
+                        <?php echo $this->form->getElement(Application_Form_Direccion::E_AVENIDA)->getLabel();
+                        ?></th>
+                    <td><?php echo $this->escape($this->direccion->avenida); ?>
+                    </td>
+                </tr> <?php
+            }
+            ?> 
+            <?php if ($this->direccion->calle != '') { ?>
+                <tr>
+                    <th align="right" width="30%">
+                        <?php echo $this->form->getElement(Application_Form_Direccion::E_CALLE)->getLabel();
+                        ?></th>
+                    <td><?php echo $this->escape($this->direccion->calle); ?>
+                    </td>
+                </tr> <?php
+            }
+            ?> 
+
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Direccion::E_TIPO)->getLabel();
+                    ?></th>
+                <td><?php
+                    /* '1' => 'Edificio', '2' => 'Casa' */
+                    if ($this->direccion->tipo == '1') {
+                        echo "Edificio";
+                    } else {
+                        echo "Casa";
+                    }
+                    ?>
+                </td>
+            </tr>
+            <?php if ($this->direccion->tipo == '1') { ?>
+                <tr>
+                    <th align="right" width="30%">
+                        <?php echo $this->form->getElement(Application_Form_Direccion::E_EDIFICIO)->getLabel();
+                        ?></th>
+                    <td><?php echo $this->escape($this->direccion->edificio); ?>
+                    </td>
+                </tr> 
+                <tr>
+                    <th align="right" width="30%">
+                        <?php echo $this->form->getElement(Application_Form_Direccion::E_PISO)->getLabel();
+                        ?></th>
+                    <td><?php echo $this->escape($this->direccion->piso); ?>
+                    </td>
+                </tr>
+                <?php
+            }
+            ?> 
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Direccion::E_NUMERO)->getLabel();
+                    ?></th>
+                <td><?php echo $this->escape($this->direccion->n_casa); ?>
+                </td>
+            </tr>
+            <tr>
+                <th align="right" width="30%">
+                    Constancia de Residencia
+                </th>
+                <td>
+                    <?php if ($this->direccion->archivo != '') { ?>
+                        <a href="<?php echo $this->url(array('controller' => 'archivo', 'action' => 'ver', 'id' => $this->direccion->cedula)); ?>"title="Adjunto"><?php echo $this->img('ico_archivo_pdf.png'); ?>
+                        </a>
+                    <?php } else { ?>
+                        No se ha adjuntado ningun archivo.
+                    <?php } ?>
+                </td>
+            </tr><?php } else {
+                    ?><tr><th align ="center" colspan = "2">No se ha cargado Dirección</th></tr>
+        <?php } ?>
+        <tr>
+            <td align ="center" colspan = "2">
+                <a class="button" href="<?php echo $this->url(array('module' => 'default', 'controller' => 'reporte', 'action' => 'trabajadores', 'page' => $this->page), null, true); ?>"><?php echo $this->img('ico_volver.png'); ?> Volver</a>
+            </td>
+        </tr>
+</table>
+

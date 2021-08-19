@@ -1,0 +1,56 @@
+<?php echo $this->form('EliminarrecorridoForm', array('method' => Zend_Form::METHOD_POST, 'action' => $this->url())); ?>
+
+<?php 
+if ($this->recorrido): ?>
+    </br>
+    <table class=" general table  table-striped table-bordered " summary="Eliminar Recorrido" style="width:80%">
+        <tr>
+            <th colspan="22" align="center">Datos del Recorrido a Eliminar</th>
+        </tr>
+
+        <th align="right">Ruta</th>
+        <th align="right">Horario</th>
+        <th align="right">Referencia</th>
+        <th align="right">Orden</th>
+
+        <?php foreach ($this->recorrido as $row): ?>
+        <tr>
+            <td><?php echo $this->escape($row->des_ruta); ?></td>
+            <td><?php echo $this->escape($row->desc_horario); ?></td>
+            <td><?php echo $this->escape($row->descripcion); ?></td>
+            <td><?php echo $this->escape($row->orden); ?></td> 
+        </tr>
+        <?php endforeach; ?>   
+    </table>
+<?php endif; ?>
+
+<table class="general table  table-striped table-bordered" summary="Eliminar Tercero" style="width: 40%">
+    <?php if ($this->boton) { ?>
+
+        <tr>
+        <h1 style="text-transform: uppercase; text-align: center;">
+        </h1>
+        <td>
+            <p align="center">
+                <?php echo $this->formSubmit('btnVolver', 'Volver'); ?>
+            <p/>
+        </td>
+    </tr>
+<?php } else { ?>
+    <tr>
+    <h4 align="center">¿Seguro que desea eliminar la Referencia <span style="color: #D6291C"><?php echo $this->referencia_desc; ?></span> de  la Ruta <span style="color: #D6291C"><?php echo $this->rutas_desc; ?></span>?</h4>
+
+    <td> 
+        <p align="center">
+            <?php echo $this->formSubmit('btnEliminar', 'Si'); ?>
+        <p/>
+    </td>
+    <td>
+        <p align="center">
+            <?php echo $this->formSubmit('btnEliminar', 'No'); ?>
+        <p/>
+    </td>
+<?php } 
+?>
+
+</table>

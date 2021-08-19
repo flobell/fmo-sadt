@@ -1,0 +1,38 @@
+<?php echo $this->form('buscarForm', array('method' => Zend_Form::METHOD_POST, 'action' => $this->url(), 'enctype' => Zend_form::ENCTYPE_MULTIPART)); ?>
+
+<table class="general" summary="Sistema" style="width:50%">
+    <caption>Información</caption>
+    <tbody>
+        <tr>
+            <th align="right" width="30%">
+                <?php echo $this->form->getElement(Application_Form_Zona::E_PADRE)->getLabel();
+                ?></th>
+            <td><?php
+                echo $this->form->getElement(Application_Form_Zona::E_PADRE)->renderViewHelper(),
+                $this->form->getElement(Application_Form_Zona::E_PADRE)->renderDescription(),
+                $this->form->getElement(Application_Form_Zona::E_PADRE)->renderErrors();
+                ?> 
+            </td>
+        </tr>
+        <tr>
+            <th align="right" width="30%">
+                <?php echo $this->form->getElement(Application_Form_Zona::E_NOMBRE)->getLabel();
+                ?></th>
+            <td><?php
+                echo $this->form->getElement(Application_Form_Zona::E_NOMBRE)->renderViewHelper(),
+                $this->form->getElement(Application_Form_Zona::E_NOMBRE)->renderDescription(),
+                $this->form->getElement(Application_Form_Zona::E_NOMBRE)->renderErrors();
+                ?> 
+            </td>
+        </tr>
+</table>
+
+<p align = 'center'>
+    <?php
+    echo $this->form->getElement(Application_Form_Zona::E_ACEPTAR)->renderViewHelper();
+    ?>
+    <?php
+    echo $this->form->getElement(Application_Form_Zona::E_VOLVER)->renderViewHelper();
+    ?>
+</p>
+

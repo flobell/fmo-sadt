@@ -1,0 +1,54 @@
+<?php echo $this->form('buscarForm', array('method' => Zend_Form::METHOD_POST, 'action' => $this->url(), 'enctype' => Zend_form::ENCTYPE_MULTIPART)); ?>
+
+<table class="general" summary="Sistema" style="width:50%">
+    <caption>Información de la Zona</caption>
+    <tbody>
+        <tr>
+            <th align="right" width="30%">
+                <?php echo $this->form->getElement(Application_Form_Direccion::E_ESTADO)->getLabel();
+                ?></th>
+            <td><?php
+                echo $this->form->getElement(Application_Form_Direccion::E_ESTADO)->renderViewHelper(),
+                $this->form->getElement(Application_Form_Direccion::E_ESTADO)->renderDescription(),
+                $this->form->getElement(Application_Form_Direccion::E_ESTADO)->renderErrors();
+                ?> 
+            </td>
+        </tr>
+</table>
+
+<?php if ($this->listado) { ?>
+    <br/>
+    <table class="general" style="width:70%">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Nombre</th>
+                <th width="10%">Editar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $i = 1;
+            foreach ($this->listado as $fila):
+                ?>
+                <tr>
+                    <td><?php echo $i++; ?></td>
+                    <td><?php echo $this->escape($fila->nombre); ?></td>
+                    <td width="2%" align="center">
+                        <a href="<?php echo $this->url(array('id' => $fila->id, 'action' => 'editar')); ?>"title="Editar"><?php echo $this->img('ico_detalle.png'); ?>
+                        </a>
+                    </td>
+                </tr>
+                <?php
+            endforeach;
+            ?>
+        </tbody>
+    <?php } else {
+        ?>
+        <center><h1>
+                No Existen Zonas Adyacentes
+            </h1>
+        </center>
+    <?php }
+    ?>
+

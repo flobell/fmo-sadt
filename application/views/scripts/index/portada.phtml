@@ -1,0 +1,23 @@
+<?php
+$sistema = Zend_Registry::get('sistema');
+$usuario = Fmo_Model_Seguridad::getUsuarioSesion();
+?>
+<h1 style="text-transform: uppercase; text-align: center;">
+    <?php echo $this->escape($sistema['titulo']), ' (', $this->escape($sistema['siglado']), ')'; ?>
+</h1>
+<p style="margin-left: 150px; margin-right: 100px; text-align: center; font-size: 14px;">
+<?php
+if (isset($usuario->nombre, $usuario->apellido)):
+    echo '¡Bienvenido, <b>', ucwords(strtolower($usuario->nombre . ' ' . $usuario->apellido)), '</b>! Usted ha ingresado al ';
+endif;
+?><b><?php echo $sistema['titulo']; ?> (<?php echo strtoupper($sistema['siglado']); ?>)</b>.
+<br/>
+</p>
+<!--<h2 align="center">¿QUÉ ES <i>< php echo strtoupper($sistema['siglado']); ?></i>?</h2>-->
+<h2><p style="margin: 10px;" align="justify">Es un <i>sistema</i> que permite al trabajador ferrominero la actualización de 
+        la dirección en la cual se encuentra domiciliado11111111111111111111111.</p></h2>
+<br>
+<p align="center">
+<?php echo $this->img('direccion.jpeg'); ?>
+
+</p>

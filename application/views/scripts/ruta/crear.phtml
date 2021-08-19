@@ -1,0 +1,114 @@
+<?php //echo $this->form('CrearForm', array('method' => Zend_Form::METHOD_POST, 'action' => $this->url())); ?>
+<?php echo $this->form->renderForm(false); ?>
+<table class="general" summary="Sistema" style="width:50%">
+        <caption>CREACIÓN DE LAS RUTAS DE TRANSPORTES</caption>
+        <tbody>
+            
+            <tr>
+                <th align="right" width="30%">
+                    <?php 
+                    echo $this->form->getElement(Application_Form_Crear::E_HORARIO)->getLabel();
+                    ?>
+                </th>
+                <td><?php
+                    echo $this->form->getElement(Application_Form_Crear::E_HORARIO)->renderViewHelper(),
+                    $this->form->getElement(Application_Form_Crear::E_HORARIO)->renderDescription(),
+                    $this->form->getElement(Application_Form_Crear::E_HORARIO)->renderErrors();
+                    ?> 
+                </td>
+            </tr>
+            
+            <tr>
+                <th align="right" width="30%">
+                    <?php 
+                    echo $this->form->getElement(Application_Form_Crear::E_RUTA)->getLabel();
+                    ?>
+                </th>
+                <td><?php
+                    echo $this->form->getElement(Application_Form_Crear::E_RUTA)->renderViewHelper(),
+                    $this->form->getElement(Application_Form_Crear::E_RUTA)->renderDescription(),
+                    $this->form->getElement(Application_Form_Crear::E_RUTA)->renderErrors();
+                    ?> 
+                </td>
+            </tr>
+            
+            <tr>
+                <th align="right" width="30%">
+                    <?php 
+                    echo $this->form->getElement(Application_Form_Crear::E_TIEMPO)->getLabel();
+                    ?>
+                </th>
+                <td><?php
+                    echo $this->form->getElement(Application_Form_Crear::E_TIEMPO)->renderViewHelper(),
+                    $this->form->getElement(Application_Form_Crear::E_TIEMPO)->renderDescription(),
+                    $this->form->getElement(Application_Form_Crear::E_TIEMPO)->renderErrors();
+                    ?> 
+                </td>
+            </tr>
+            
+            <tr>
+                <th align="right" width="30%">
+                    <?php 
+                    echo $this->form->getElement(Application_Form_Crear::E_DISTANCIA)->getLabel();
+                    ?>
+                </th>
+                <td><?php
+                    echo $this->form->getElement(Application_Form_Crear::E_DISTANCIA)->renderViewHelper(),
+                    $this->form->getElement(Application_Form_Crear::E_DISTANCIA)->renderDescription(),
+                    $this->form->getElement(Application_Form_Crear::E_DISTANCIA)->renderErrors();
+                    ?> 
+                </td>
+            </tr>
+                       
+    </table>
+
+    <p align = 'center'>
+        <?php
+        echo $this->form->getElement(Application_Form_Crear::E_GUARDAR)->renderViewHelper();
+        ?>
+        
+    </p>
+
+    <?php if ($this->rutas) {?>
+<table class=" general table  table-striped table-bordered " summary="Detalle de Rutas" style="width:80%">
+        <caption align="top">Rutas Creadas</caption>
+<!--        <tr>
+            <th colspan="22" align="center">Detalles de las Últimas Solicitudes Realizadas en el Año</th>
+        </tr>-->
+
+        <tr>
+            <th>Ruta</th>
+            <th>Horario</th>
+            <th>Tiempo en Min.</th>
+            <th>Distancia en Km.</th>
+            <th>Eliminar</th>
+        </tr>
+
+        <?php foreach ($this->rutas as $row): ?>
+            <tr>
+                <td><?php echo $this->escape($row->descripcion); ?></td>
+                <td><?php echo $this->escape($row->horario_desc); ?></td>
+                <td><?php echo $this->escape($row->tiempo); ?></td>
+                <td><?php echo $this->escape($row->distancia); ?></td>
+                <td align="center">
+                        <?php
+                        //$this->formText('eliminar', '1', array('class' => 'col-md-7 col-xs-12 form-control'));
+                        ?>
+                        <a href="<?php echo $this->url(array('controller' => 'ruta', 'action' => 'eliminar', 'id' => $row->id)); ?>" title="Eliminar">
+                            <?php echo $this->img('ico_eliminar.png'); 
+                            
+                            ?></a>
+                </td>
+            </tr>
+        <?php endforeach; ?>       
+        
+        
+
+        
+
+    </table>
+<?php } ?>
+    
+
+   <?php //echo $this->formHidden('hdFicha',$this->hdFicha)?>
+<?php //endif; ?>

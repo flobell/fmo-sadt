@@ -1,0 +1,134 @@
+<?php echo $this->form('buscarForm', array('method' => Zend_Form::METHOD_POST, 'action' => $this->url(), 'enctype' => Zend_form::ENCTYPE_MULTIPART)); ?>
+
+
+<?php
+//if ($this->form instanceof Application_Form_Ruta) {
+?>
+<table class="general" summary="Sistema" style="width:50%">
+    <caption>Seleccionar Rutas de Transportes</caption>
+    <tbody>
+
+        <tr>
+            <th align="right" width="30%">
+                <?php echo $this->form->getElement(Application_Form_Ruta::E_HORARIO)->getLabel();
+                ?></th>
+            <td><?php
+                echo $this->form->getElement(Application_Form_Ruta::E_HORARIO)->renderViewHelper(),
+                $this->form->getElement(Application_Form_Ruta::E_HORARIO)->renderDescription(),
+                $this->form->getElement(Application_Form_Ruta::E_HORARIO)->renderErrors();
+                ?> 
+            </td>
+        </tr>
+
+        <tr>
+            <th align="right" width="30%">
+                <?php echo $this->form->getElement(Application_Form_Ruta::E_RUTA)->getLabel();
+                ?></th>
+            <td><?php
+                echo $this->form->getElement(Application_Form_Ruta::E_RUTA)->renderViewHelper(),
+                $this->form->getElement(Application_Form_Ruta::E_RUTA)->renderDescription(),
+                $this->form->getElement(Application_Form_Ruta::E_RUTA)->renderErrors();
+                ?> 
+            </td>
+        </tr>
+    </tbody>
+</table>
+<?php if ($this->id_ruta) { ?>
+    <table class="general" summary="Sistema" style="width:50%">
+        <caption>Agregar Sector al Recorrido </caption>
+        <tbody>
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Ruta::E_ESTADO)->getLabel();
+                    ?></th>
+                <td><?php
+                    echo $this->form->getElement(Application_Form_Ruta::E_ESTADO)->renderViewHelper(),
+                    $this->form->getElement(Application_Form_Ruta::E_ESTADO)->renderDescription(),
+                    $this->form->getElement(Application_Form_Ruta::E_ESTADO)->renderErrors();
+                    ?> 
+                </td>
+            </tr>
+
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Ruta::E_MUNICIPIO)->getLabel();
+                    ?></th>
+                <td><?php
+                    echo $this->form->getElement(Application_Form_Ruta::E_MUNICIPIO)->renderViewHelper(),
+                    $this->form->getElement(Application_Form_Ruta::E_MUNICIPIO)->renderDescription(),
+                    $this->form->getElement(Application_Form_Ruta::E_MUNICIPIO)->renderErrors();
+                    ?> 
+                </td>
+            </tr>
+
+            <?php
+            //if ($this->nivel>3) {
+            ?>
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Ruta::E_PARROQUIA)->getLabel();
+                    ?></th>
+                <td><?php
+                    echo $this->form->getElement(Application_Form_Ruta::E_PARROQUIA)->renderViewHelper(),
+                    $this->form->getElement(Application_Form_Ruta::E_PARROQUIA)->renderDescription(),
+                    $this->form->getElement(Application_Form_Ruta::E_PARROQUIA)->renderErrors();
+                    ?> 
+                </td>
+            </tr>
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Ruta::E_SECTOR)->getLabel();
+                    ?></th>
+                <td><?php
+                    echo $this->form->getElement(Application_Form_Ruta::E_SECTOR)->renderViewHelper(),
+                    $this->form->getElement(Application_Form_Ruta::E_SECTOR)->renderDescription(),
+                    $this->form->getElement(Application_Form_Ruta::E_SECTOR)->renderErrors();
+                    ?> 
+                </td>
+            </tr>
+
+
+            <?php
+            //}
+            ?>
+            </body>
+    </table>
+    <p align = 'center'>
+        <?php
+        echo $this->form->getElement(Application_Form_Ruta::E_ACEPTAR)->renderViewHelper();
+        ?>
+
+    </p>
+
+<?php
+}
+
+if ($this->recorridos) {//if ($this->id_horario) {
+    ?>
+    <table class=" general table  table-striped table-bordered " summary="Detalle de Rutas" style="width:80%">
+        <caption align="top"><?php echo $this->escape($this->recorridos[0]->ruta); ?> En el Horario <?php echo $this->escape($this->recorridos[0]->horario); ?></caption>
+        <tr>
+            <th>Recorrido</th>
+            <th>Editar Orden</th>
+        </tr>
+
+    <?php foreach ($this->recorridos as $row): ?>
+            <tr><td><?php echo $this->escape($row->recorrido); ?></td>
+                <td align="center">
+                    <?php
+                    //$this->formText('eliminar', '1', array('class' => 'col-md-7 col-xs-12 form-control'));
+                    ?>
+                    <a href="<?php echo $this->url(array('controller' => 'ruta', 'action' => 'editrecorrido', 'id' => $row->id_ruta)); ?>" title="Eliminar">
+                        <?php echo $this->img('ico_detalle.png');
+                        ?></a>
+                </td>
+            </tr>
+    <?php endforeach; ?>       
+
+
+
+
+
+    </table>
+<?php }
+?>

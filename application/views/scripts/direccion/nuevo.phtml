@@ -1,0 +1,335 @@
+<?php echo $this->form('buscarForm', array('method' => Zend_Form::METHOD_POST, 'action' => $this->url(), 'enctype' => Zend_form::ENCTYPE_MULTIPART)); ?>
+<table class="general" style="width:50%">
+    <caption>Información del Trabajador PRUEBA</caption>
+    <tr>
+        <th>
+            Ficha
+        </th>
+        <td>
+            <?php echo $this->escape($this->usuario->ficha); ?>
+        </td>
+        <th>
+            Cedula
+        </th>
+        <td>
+            <?php echo $this->escape($this->usuario->cedula); ?>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <td>
+            <?php echo $this->escape($this->usuario->nombre), ' ', $this->escape($this->usuario->apellido); ?>
+        </td>
+        <th>
+            Cargo
+        </th>
+        <td>
+            <?php echo $this->escape($this->usuario->{Fmo_Model_Personal::CARGO}); ?>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Gerencia
+        </th>
+        <td>
+          <?php if(count($this->centro)<3){
+                echo $this->escape($this->centro[1]->centro_costo);
+            } else{
+                echo $this->escape($this->centro[2]->centro_costo);
+            }
+            ?>
+        </td>
+        <th>
+            Departamento
+        </th>
+        <td>
+             <?php if(count($this->centro)<1){
+                echo $this->escape($this->centro[0]->centro_costo);
+            } else{
+                echo $this->escape($this->centro[1]->centro_costo);
+            }
+            ?>
+        </td>
+    </tr>
+</table>
+
+<?php
+if ($this->form instanceof Application_Form_Direccion) {
+    ?>
+    <table class="general" summary="Sistema" style="width:50%">
+        <caption>Actualización de Dirección</caption>
+        <tbody>
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Direccion::E_ESTADO)->getLabel();
+                    ?></th>
+                <td><?php
+                    echo $this->form->getElement(Application_Form_Direccion::E_ESTADO)->renderViewHelper(),
+                    $this->form->getElement(Application_Form_Direccion::E_ESTADO)->renderDescription(),
+                    $this->form->getElement(Application_Form_Direccion::E_ESTADO)->renderErrors();
+                    ?> 
+                </td>
+            </tr>
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Direccion::E_MUNICIPIO)->getLabel();
+                    ?></th>
+                <td><?php
+                    echo $this->form->getElement(Application_Form_Direccion::E_MUNICIPIO)->renderViewHelper(),
+                    $this->form->getElement(Application_Form_Direccion::E_MUNICIPIO)->renderDescription(),
+                    $this->form->getElement(Application_Form_Direccion::E_MUNICIPIO)->renderErrors();
+                    ?> 
+                </td>
+            </tr>
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Direccion::E_PARROQUIA)->getLabel();
+                    ?></th>
+                <td><?php
+                    echo $this->form->getElement(Application_Form_Direccion::E_PARROQUIA)->renderViewHelper(),
+                    $this->form->getElement(Application_Form_Direccion::E_PARROQUIA)->renderDescription(),
+                    $this->form->getElement(Application_Form_Direccion::E_PARROQUIA)->renderErrors();
+                    ?> 
+                </td>
+            </tr>
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Direccion::E_ZONA)->getLabel();
+                    ?></th>
+                <td><?php
+                    echo $this->form->getElement(Application_Form_Direccion::E_ZONA)->renderViewHelper(),
+                    $this->form->getElement(Application_Form_Direccion::E_ZONA)->renderDescription(),
+                    $this->form->getElement(Application_Form_Direccion::E_ZONA)->renderErrors();
+                    ?> 
+                </td>
+            </tr>
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Direccion::E_LOCALIDAD)->getLabel();
+                    ?></th>
+                <td><?php
+                    echo $this->form->getElement(Application_Form_Direccion::E_LOCALIDAD)->renderViewHelper(),
+                    $this->form->getElement(Application_Form_Direccion::E_LOCALIDAD)->renderDescription(),
+                    $this->form->getElement(Application_Form_Direccion::E_LOCALIDAD)->renderErrors();
+                    ?> 
+                </td>
+            </tr>  
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Direccion::E_REFERENCIA)->getLabel();
+                    ?></th>
+                <td><?php
+                    echo $this->form->getElement(Application_Form_Direccion::E_REFERENCIA)->renderViewHelper(),
+                    $this->form->getElement(Application_Form_Direccion::E_REFERENCIA)->renderDescription(),
+                    $this->form->getElement(Application_Form_Direccion::E_REFERENCIA)->renderErrors();
+                    ?> 
+                </td>
+            </tr>
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Direccion::E_SECTOR)->getLabel();
+                    ?></th>
+                <td><?php
+                    echo $this->form->getElement(Application_Form_Direccion::E_SECTOR)->renderViewHelper(),
+                    $this->form->getElement(Application_Form_Direccion::E_SECTOR)->renderDescription(),
+                    $this->form->getElement(Application_Form_Direccion::E_SECTOR)->renderErrors();
+                    ?> 
+                </td>
+            </tr>
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Direccion::E_AVENIDA)->getLabel();
+                    ?></th>
+                <td><?php
+                    echo $this->form->getElement(Application_Form_Direccion::E_AVENIDA)->renderViewHelper(),
+                    $this->form->getElement(Application_Form_Direccion::E_AVENIDA)->renderDescription(),
+                    $this->form->getElement(Application_Form_Direccion::E_AVENIDA)->renderErrors();
+                    ?> 
+                </td>
+            </tr>
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Direccion::E_CALLE)->getLabel();
+                    ?></th>
+                <td><?php
+                    echo $this->form->getElement(Application_Form_Direccion::E_CALLE)->renderViewHelper(),
+                    $this->form->getElement(Application_Form_Direccion::E_CALLE)->renderDescription(),
+                    $this->form->getElement(Application_Form_Direccion::E_CALLE)->renderErrors();
+                    ?> 
+                </td>
+            </tr>
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Direccion::E_TIPO)->getLabel();
+                    ?></th>
+                <td><?php
+                    echo $this->form->getElement(Application_Form_Direccion::E_TIPO)->renderViewHelper(),
+                    $this->form->getElement(Application_Form_Direccion::E_TIPO)->renderDescription(),
+                    $this->form->getElement(Application_Form_Direccion::E_TIPO)->renderErrors();
+                    ?> 
+                </td>
+            </tr>
+            <?php if ($this->tipo == '1') { ?>
+                <tr>
+                    <th align="right" width="30%">
+                        <?php echo $this->form->getElement(Application_Form_Direccion::E_EDIFICIO)->getLabel();
+                        ?></th>
+                    <td><?php
+                        echo $this->form->getElement(Application_Form_Direccion::E_EDIFICIO)->renderViewHelper(),
+                        $this->form->getElement(Application_Form_Direccion::E_EDIFICIO)->renderDescription(),
+                        $this->form->getElement(Application_Form_Direccion::E_EDIFICIO)->renderErrors();
+                        ?> 
+                    </td>
+                </tr>
+                <tr>
+                    <th align="right" width="30%">
+                        <?php echo $this->form->getElement(Application_Form_Direccion::E_PISO)->getLabel();
+                        ?></th>
+                    <td><?php
+                        echo $this->form->getElement(Application_Form_Direccion::E_PISO)->renderViewHelper(),
+                        $this->form->getElement(Application_Form_Direccion::E_PISO)->renderDescription(),
+                        $this->form->getElement(Application_Form_Direccion::E_PISO)->renderErrors();
+                        ?> 
+                    </td>
+                </tr>
+            <?php } ?>
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Direccion::E_NUMERO)->getLabel();
+                    ?></th>
+                <td><?php
+                    echo $this->form->getElement(Application_Form_Direccion::E_NUMERO)->renderViewHelper(),
+                    $this->form->getElement(Application_Form_Direccion::E_NUMERO)->renderDescription(),
+                    $this->form->getElement(Application_Form_Direccion::E_NUMERO)->renderErrors();
+                    ?> 
+                </td>
+            </tr>
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Direccion::E_TELEFONO_CELULAR)->getLabel();
+                    ?></th>           
+                <td>
+                    <?php
+                        echo $this->form->getElement(Application_Form_Direccion::E_TELEFONO_CELULAR_EXT)->renderViewHelper(),
+                        $this->form->getElement(Application_Form_Direccion::E_TELEFONO_CELULAR_EXT)->renderDescription(),
+                        $this->form->getElement(Application_Form_Direccion::E_TELEFONO_CELULAR_EXT)->renderErrors();
+                        echo ' - ';
+                        echo $this->form->getElement(Application_Form_Direccion::E_TELEFONO_CELULAR)->renderViewHelper(),
+                        $this->form->getElement(Application_Form_Direccion::E_TELEFONO_CELULAR)->renderDescription(),
+                        $this->form->getElement(Application_Form_Direccion::E_TELEFONO_CELULAR)->renderErrors();
+                    ?> 
+                </td>
+            </tr>
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Direccion::E_TELEFONO_CASA)->getLabel();
+                    ?></th>
+                <td>
+                    <?php
+                    echo $this->form->getElement(Application_Form_Direccion::E_TELEFONO_CASA_EXT)->renderViewHelper(),
+                    $this->form->getElement(Application_Form_Direccion::E_TELEFONO_CASA_EXT)->renderDescription(),
+                    $this->form->getElement(Application_Form_Direccion::E_TELEFONO_CASA_EXT)->renderErrors();
+                    echo ' - ';
+                    echo $this->form->getElement(Application_Form_Direccion::E_TELEFONO_CASA)->renderViewHelper(),
+                    $this->form->getElement(Application_Form_Direccion::E_TELEFONO_CASA)->renderDescription(),
+                    $this->form->getElement(Application_Form_Direccion::E_TELEFONO_CASA)->renderErrors();
+                    ?> 
+                </td>
+            </tr>
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Direccion::E_TELEFONO_OFICINA)->getLabel();
+                    ?></th>
+                <td>
+                <?php
+                    echo $this->form->getElement(Application_Form_Direccion::E_TELEFONO_OFICINA_EXT)->renderViewHelper(),
+                    $this->form->getElement(Application_Form_Direccion::E_TELEFONO_OFICINA_EXT)->renderDescription(),
+                    $this->form->getElement(Application_Form_Direccion::E_TELEFONO_OFICINA_EXT)->renderErrors();
+                    echo ' - ';
+                    echo $this->form->getElement(Application_Form_Direccion::E_TELEFONO_OFICINA)->renderViewHelper(),
+                    $this->form->getElement(Application_Form_Direccion::E_TELEFONO_OFICINA)->renderDescription(),
+                    $this->form->getElement(Application_Form_Direccion::E_TELEFONO_OFICINA)->renderErrors();
+                    ?> 
+                </td>
+            </tr>
+
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Direccion::E_GRUPO_SANGUINEO)->getLabel();?>
+                </th>
+                <td>
+                <?php
+                    echo $this->form->getElement(Application_Form_Direccion::E_GRUPO_SANGUINEO)->renderViewHelper(),
+                    $this->form->getElement(Application_Form_Direccion::E_GRUPO_SANGUINEO)->renderDescription(),
+                    $this->form->getElement(Application_Form_Direccion::E_GRUPO_SANGUINEO)->renderErrors();
+                    ?> 
+                </td>
+            </tr>  
+
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Direccion::E_CORREO)->getLabel();?>
+                </th>
+                <td>
+                <?php
+                    echo $this->form->getElement(Application_Form_Direccion::E_CORREO)->renderViewHelper(),
+                    $this->form->getElement(Application_Form_Direccion::E_CORREO)->renderDescription(),
+                    $this->form->getElement(Application_Form_Direccion::E_CORREO)->renderErrors();
+                    ?> 
+                </td>
+            </tr>  
+
+            <?php if ($this->anterior != '') { ?>
+                <tr>
+                    <th align="right" width="30%">
+                        Archivo Cargado:
+                    </th>
+                    <td><?php echo $this->anterior; ?>
+                    </td>
+                </tr>
+            <?php } ?>
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Direccion::E_FILE)->getLabel();
+                    ?>
+                </th>
+                <td><?php
+                echo $this->form->getElement(Application_Form_Direccion::E_FILE)->renderFile(),
+                $this->form->getElement(Application_Form_Direccion::E_FILE)->renderDescription(),
+                $this->form->getElement(Application_Form_Direccion::E_FILE)->renderErrors();
+                    ?> 
+                </td>
+            </tr>
+    </table>
+    <p align = 'center'>
+        <?php
+        echo $this->form->getElement(Application_Form_Direccion::E_ACEPTAR)->renderViewHelper();
+        ?>
+        <a class="button" href="<?php echo $this->url(array('module' => 'default', 'controller' => 'direccion', 'action' => 'ver', 'page' => $this->page), null, true); ?>"><?php echo $this->img('ico_volver.png'); ?> Volver</a>
+    </p>
+<?php }
+?>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#telefono_celular_ext').select2({
+            //minimumInputLength: 1,
+            //placeholder: 'Seleccione el medicamento...',
+            minimumResultsForSearch : 10
+        });
+
+        $('#telefono_casa_ext').select2({
+            //minimumInputLength: 1,
+            //placeholder: 'Seleccione una patologia asociada (OPCIONAL)...',
+            minimumResultsForSearch : 10
+        });
+        
+        $('#telefono_oficina_ext').select2({
+            //minimumInputLength: 1,
+            //placeholder: 'Seleccione una patologia asociada (OPCIONAL)...',
+            minimumResultsForSearch : 10
+        });
+    }); 
+</script>

@@ -1,0 +1,66 @@
+
+<?php echo $this->form('buscarForm', array('method' => Zend_Form::METHOD_POST, 'action' => $this->url(), 'enctype' => Zend_form::ENCTYPE_MULTIPART)); ?>
+<table class="general" style="width: 50%">
+    <caption>Información del Trabajador</caption>
+    <tr>
+        <th>Ficha</th>
+        <td><?php echo $this->escape($this->usuario->ficha); ?></td>
+        <th>Cedula</th>
+        <td><?php echo $this->escape($this->usuario->cedula); ?></td>
+    </tr>
+    <tr>
+        <th>Nombre</th>
+        <td><?php echo $this->escape($this->usuario->nombre), ' ', $this->escape($this->usuario->apellido); ?></td>
+        <th>Cargo</th>
+        <td><?php echo $this->escape($this->usuario->{Fmo_Model_Personal::CARGO}); ?></td>
+    </tr>
+    <tr>
+        <th>Gerencia</th>
+        <td>
+            <?php if(count($this->centro)<3){
+                echo $this->escape($this->centro[1]->centro_costo);
+            } else{
+                echo $this->escape($this->centro[2]->centro_costo);
+            }
+            ?>
+        </td>
+        <th>Departamento</th>
+        <td>
+             <?php if(count($this->centro)<1){
+                echo $this->escape($this->centro[0]->centro_costo);
+            } else{
+                echo $this->escape($this->centro[1]->centro_costo);
+            }
+            ?>
+        </td>
+    </tr>
+</table>
+
+<table class="general" style="width: 25%">
+    <caption>¿Posee alguna de las siguientes patologías?</caption>
+    <tbody>
+        <tr>
+            <td>
+                <?php
+                    echo $this->formulario->getElement(Application_Form_Patologia::E_PATOLOGIA)->renderViewHelper(),
+                    $this->formulario->getElement(Application_Form_Patologia::E_PATOLOGIA)->renderDescription(),
+                    $this->formulario->getElement(Application_Form_Patologia::E_PATOLOGIA)->renderErrors();
+                ?> 
+            </td>
+        </tr>
+        <tr align="center">
+            <td>
+                <?php
+                    echo $this->formulario->getElement(Application_Form_Patologia::E_ACEPTAR)->renderViewHelper();
+                ?>
+                <?php if($this->paginaProveniente == "1"): ?>
+                    <a class="button" href="<?php echo $this->url(array('module' => 'default', 'controller' => 'direccion', 'action' => 'ver', 'page' => $this->page), null, true); ?>"><?php echo $this->img('ico_volver.png'); ?> Volver</a>
+                <?php else: ?>
+                    <a class="button" href="<?php echo $this->url(array('module' => 'default', 'controller' => 'administracion', 'action' => 'ver', 'id' => $this->usuario_id), null, true); ?>"><?php echo $this->img('ico_volver.png'); ?> Volver</a>
+                <?php endif; ?>
+                
+            </td>
+        </tr>
+    </tbody>
+</table>
+

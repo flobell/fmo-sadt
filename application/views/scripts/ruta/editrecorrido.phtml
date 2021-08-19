@@ -1,0 +1,57 @@
+<?php echo $this->form('EditrecorridoForm', array('method' => Zend_Form::METHOD_POST, 'action' => $this->url())); ?>
+
+<?php //var_dump($this->recorridos);
+if ($this->recorridos): ?>
+    </br>
+    <table class=" general table  table-striped table-bordered " summary="Editar Recorrido" style="width:80%">
+        <tr>
+            <th colspan="22" align="center">Datos del Recorrido de la Ruta: <span><?php echo $this->ruta_desc; ?></span></th>
+        </tr>
+
+        <th align="right">Ruta</th>
+        <th align="right">Horario</th>
+        <th align="right">Referencia</th>
+        <th align="right">Orden</th>
+        <th align="right">Editar</th>
+        
+        
+        <?php foreach ($this->recorridos as $row): ?>
+            <tr>
+                <td><?php echo $this->escape($row->des_ruta); ?></td>
+                <td><?php echo $this->escape($row->desc_horario); ?></td>
+                <td><?php echo $this->escape($row->descripcion); ?></td>
+                <td><?php echo $this->escape($row->orden); ?></td>
+                
+                <!--<td align="left">-->
+                <?php
+                
+                $orden = array($row->orden) + Application_Model_Recorrido::getOrden($row->id_ruta, $row->orden);
+                
+//                echo $this->formSelect('cbOrden', $this->vOrden, array('onChange' => 'this.form.submit();',
+//                    'class' => 'form-control'), $orden);
+                ?>
+                <!--</td>-->
+                
+                <td align="center">
+                        <a href="<?php echo $this->url(array('id-orden' => $row->orden,'id-recorrido' => $row->id_recorrido, 'action' => 'editarorden')); ?>"title="Editar"><?php echo $this->img('ico_detalle.png'); ?>
+                        </a>
+                </td>
+                <!--<td align="center">-->
+                        <?php
+                        //$this->formText('eliminar', '1', array('class' => 'col-md-7 col-xs-12 form-control'));
+                        ?>
+                        <!--<a href="<?php // echo $this->url(array('controller' => 'ruta', 'action' => 'elirecorrido', 'id' => $row->id_recorrido)); ?>" title="Eliminar">-->
+                            <?php // echo $this->img('ico_eliminar.png'); 
+                            
+                            ?></a>
+                <!--</td>-->
+
+                
+            </tr>
+        <?php endforeach; ?>  
+
+       
+<?php endif; ?>
+
+
+</table>

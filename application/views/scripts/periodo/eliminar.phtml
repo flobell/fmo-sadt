@@ -1,0 +1,15 @@
+<table class="general" summary="Sistema">
+    <caption>ELIMINAR PERIODO</caption>
+    <tbody>
+        <tr>
+            <th align="right" width="20%">Fecha Inicio:</th>
+            <td><?php echo $this->escape($this->periodo->fecha_inicio); ?></td>
+        </tr><tr>
+            <th align="right">Fecha Fin:</th>
+            <td><?php echo $this->escape($this->periodo->fecha_fin); ?></td>
+        </tr>
+</table>
+<p align="center">
+    <a class="button" href="<?php echo $this->url(array('module' => 'default', 'controller' => 'periodo', 'action' => 'listado', 'page' => $this->page), null, true); ?>"><?php echo $this->img('ico_volver.png'); ?> Volver</a>
+    <a class="button" href="<?php echo $this->url(array('module' => 'default', 'controller' => 'periodo', 'action' => 'eliminar', 'confirmar' => 'S', 'page' => $this->page, 'id' => $this->periodo->id), null, true); ?>"><?php echo $this->img('ico_eliminar.png'); ?> Eliminar</a>
+</p>

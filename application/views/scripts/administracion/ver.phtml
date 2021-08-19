@@ -1,0 +1,353 @@
+<?php echo $this->form('buscarForm', array('method' => Zend_Form::METHOD_POST, 'action' => $this->url(), 'enctype' => Zend_form::ENCTYPE_MULTIPART)); ?>
+<legend>Sistema de actualización de direccion de domicilio de trabajadores</legend>
+<br>
+<table class="general" style="width:50%">
+    <caption>Información del Trabajador</caption>
+    <tr>
+        <th>
+            Ficha
+        </th>
+        <td>
+            <?php echo $this->escape($this->usuario->ficha); ?>
+        </td>
+        <th>
+            Cedula
+        </th>
+        <td>
+            <?php echo $this->escape($this->usuario->cedula); ?>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <td>
+            <?php echo $this->escape($this->usuario->nombre), ' ', $this->escape($this->usuario->apellido); ?>
+        </td>
+        <th>
+            Cargo
+        </th>
+        <td>
+            <?php echo $this->escape($this->usuario->{Fmo_Model_Personal::CARGO}); ?>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Gerencia
+        </th>
+        <td>
+            <?php if(count($this->centro)<3){
+                echo $this->escape($this->centro[0]->centro_costo);
+            } else{
+                echo $this->escape($this->centro[2]->centro_costo);
+            }
+?>
+        </td>
+        <th>
+            Departamento
+        </th>
+        <td>
+            <?php if(count($this->centro)<1){
+                echo $this->escape($this->centro[0]->centro_costo);
+            } else{
+                echo $this->escape($this->centro[1]->centro_costo);
+            }
+?>
+        </td>
+    </tr>
+</table>
+
+
+<table class="general" summary="Sistema" style="width:50%">
+    <caption>Dirección de Domicilio Actual</caption>
+    <?php
+    if ($this->direccion) {
+        ?>
+        <tbody>
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Direccion::E_MUNICIPIO)->getLabel();
+                    ?></th>
+                <td><?php
+                    echo $this->escape($this->direccion->nombre_municipio);
+                    ?> 
+                </td>
+            </tr>
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Direccion::E_PARROQUIA)->getLabel();
+                    ?></th>
+                <td><?php
+                    echo $this->escape($this->direccion->nombre_parroquia);
+                    ?> 
+                </td>
+            </tr>
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Direccion::E_ZONA)->getLabel();
+                    ?></th>
+                <td><?php
+                    echo $this->escape($this->direccion->nombre_zona);
+                    ?>
+                </td>
+            </tr>
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Direccion::E_LOCALIDAD)->getLabel();
+                    ?></th>
+                <td><?php if ($this->direccion->localidad != '') {
+                            echo $this->escape($this->direccion->desc_localidad); 
+                          }?>
+                </td>
+            </tr>       
+            <?php if ($this->direccion->referencia != '') { ?>
+                <tr>
+                    <th align="right" width="30%">
+                        <?php echo $this->form->getElement(Application_Form_Direccion::E_REFERENCIA)->getLabel();
+                        ?></th>
+                    <td><?php echo $this->escape($this->direccion->referencia); ?>
+                    </td>
+                </tr> <?php
+            }
+            ?>      
+            <?php if ($this->direccion->sector != '') { ?>
+                <tr>
+                    <th align="right" width="30%">
+                        <?php echo $this->form->getElement(Application_Form_Direccion::E_SECTOR)->getLabel();
+                        ?></th>
+                    <td><?php echo $this->escape($this->direccion->sector); ?>
+                    </td>
+                </tr> <?php
+            }
+            ?> 
+            <?php if ($this->direccion->avenida != '') { ?>
+                <tr>
+                    <th align="right" width="30%">
+                        <?php echo $this->form->getElement(Application_Form_Direccion::E_AVENIDA)->getLabel();
+                        ?></th>
+                    <td><?php echo $this->escape($this->direccion->avenida); ?>
+                    </td>
+                </tr> <?php
+            }
+            ?> 
+            <?php if ($this->direccion->calle != '') { ?>
+                <tr>
+                    <th align="right" width="30%">
+                        <?php echo $this->form->getElement(Application_Form_Direccion::E_CALLE)->getLabel();
+                        ?></th>
+                    <td><?php echo $this->escape($this->direccion->calle); ?>
+                    </td>
+                </tr> <?php
+            }
+            ?> 
+
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Direccion::E_TIPO)->getLabel();
+                    ?></th>
+                <td><?php
+                    /* '1' => 'Edificio', '2' => 'Casa' */
+                    if ($this->direccion->tipo == '1') {
+                        echo "Edificio";
+                    } else {
+                        echo "Casa";
+                    }
+                    ?>
+                </td>
+            </tr>
+            <?php if ($this->direccion->tipo == '1') { ?>
+                <tr>
+                    <th align="right" width="30%">
+                        <?php echo $this->form->getElement(Application_Form_Direccion::E_EDIFICIO)->getLabel();
+                        ?></th>
+                    <td><?php echo $this->escape($this->direccion->edificio); ?>
+                    </td>
+                </tr> 
+                <tr>
+                    <th align="right" width="30%">
+                        <?php echo $this->form->getElement(Application_Form_Direccion::E_PISO)->getLabel();
+                        ?></th>
+                    <td><?php echo $this->escape($this->direccion->piso); ?>
+                    </td>
+                </tr>
+                <?php
+            }
+            ?> 
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Direccion::E_NUMERO)->getLabel();
+                    ?></th>
+                <td><?php echo $this->escape($this->direccion->n_casa); ?>
+                </td>
+            </tr> 
+            <?php if ($this->direccion->celular != '0') { ?>
+                <tr>
+                    <th align="right" width="30%">
+                        <?php echo $this->form->getElement(Application_Form_Direccion::E_TELEFONO_CELULAR)->getLabel();
+                        ?></th>
+                    <td><?php echo $this->escape($this->direccion->celular); ?>
+                    </td>
+                </tr> <?php
+            }
+            ?> 
+            <?php if ($this->direccion->telefono != '') { ?>
+                <tr>
+                    <th align="right" width="30%">
+                        <?php echo $this->form->getElement(Application_Form_Direccion::E_TELEFONO_CASA)->getLabel();
+                        ?></th>
+                    <td><?php echo $this->escape($this->direccion->telefono); ?>
+                    </td>
+                </tr> <?php
+            }
+            ?>
+            <?php if ($this->direccion->telefono_oficina != '') { ?>
+                <tr>
+                    <th align="right" width="30%">
+                        <?php echo $this->form->getElement(Application_Form_Direccion::E_TELEFONO_OFICINA)->getLabel();
+                        ?></th>
+                    <td><?php echo $this->escape($this->direccion->telefono_oficina); ?>
+                    </td>
+                </tr> <?php
+            }
+            ?> 
+            <?php if ($this->direccion->grupo_sanguineo != '') { ?>
+                <tr>
+                    <th align="right" width="30%">
+                        <?php echo $this->form->getElement(Application_Form_Direccion::E_GRUPO_SANGUINEO)->getLabel();
+                        ?></th>
+                    <td><?php echo $this->escape($this->direccion->grupo_sanguineo); ?>
+                    </td>
+                </tr> <?php
+            }
+            ?> 
+            <?php if ($this->direccion->correo != '') { ?>
+                <tr>
+                    <th align="right" width="30%">
+                        <?php echo $this->form->getElement(Application_Form_Direccion::E_CORREO)->getLabel();
+                        ?></th>
+                    <td><?php echo $this->escape($this->direccion->correo); ?>
+                    </td>
+                </tr> <?php
+            }
+            ?> 
+            <tr>
+                <th align="right" width="30%">
+                    Constancia de Residencia / Rif / Factura de Servicio
+                </th>
+                <td>
+                    <?php if ($this->direccion->archivo != '') { ?>
+                        <a href="<?php echo $this->url(array('controller' => 'archivo', 'action' => 'ver', 'id' => $this->direccion->cedula)); ?>"title="Adjunto"><?php echo $this->img('ico_archivo_pdf.png'); ?>
+                        </a>
+                    <?php } else { ?>
+                        No se ha adjuntado ningun archivo.
+                    <?php } ?>
+                </td>
+            </tr><?php } else {
+                    ?><tr><th align ="center" colspan = "2">No se ha cargado Dirección</th></tr>
+        <?php } ?>
+        <tr>
+            <td align ="center" colspan = "2">
+                <?php
+                echo $this->form->getElement(Application_Form_Direccion::E_ACEPTAR)->renderViewHelper();
+                ?>
+                <a class="button" href="<?php echo $this->url(array('module' => 'default', 'controller' => 'administracion', 'action' => 'buscar', 'page' => $this->page), null, true); ?>"><?php echo $this->img('ico_volver.png'); ?> Volver</a>
+            </td>
+        </tr>
+</table>
+
+<!--PATOLOGIAS-->
+<!-- <table class="general" summary="Sistema" style="width:25%">
+    <caption>
+        Patologías
+        <a href="<?php //echo $this->url(array('module' => 'default','controller' => 'patologia', 'action' => 'agregar', 'c' => $this->usuario->cedula,  'p' => '2')); ?>" title="Actualizar Patologías"><?php echo $this->img('ico_agregar.png'); ?></a>
+    </caption>
+    <thead>
+        <th>
+            Descripcion de patología
+        </th>
+    </thead>
+
+    <tbody>
+        <?php 
+            //if($this->patologias):
+                
+                //foreach($this->patologias as $patologia):
+        ?>
+            <tr>
+                <td align="left" style="font-size: 12px;"><?php //echo $patologia->patologia; ?></td>
+            </tr>              
+        <?php 
+                //endforeach;
+            //else:
+        ?>
+            <tr>
+                <td align="center">Sin Patologías</td>
+            </tr>
+        <?php
+            //endif;
+        ?>
+    </tbody>
+</table> -->
+
+<!--MEDICAMENTOS-->
+<table class="general" summary="Sistema" style="width:80%">
+    <caption>
+        Patologías y Medicamentos Asociados
+        <a href="<?php echo $this->url(array('module' => 'default','controller' => 'patologia', 'action' => 'agregarmedicamento', 'c' => $this->usuario->cedula, 'p' => '2')); ?>" title="Añadir Medicamento"><?php echo $this->img('ico_agregar.png'); ?></a>
+    </caption>
+    <thead>
+        <th style="width: 25%;">Medicamento</th>
+        <th style="width: 25%;">Patología</th>
+        <th style="width: 25%;">Dosis</th>
+        <th style="width: 25%;">Frecuencia</th>
+        <!-- <th style="width: 50%;">Indicación</th> -->
+        <th style="width: 10%;">Opción</th>
+    </thead>
+
+    <tbody>
+        <?php 
+            if($this->medicamentos):
+                
+                foreach($this->medicamentos as $medicamento):
+        ?>
+            <tr>
+                <td align="left" style="font-size: 12px;"><?php echo $medicamento->medicamento; ?></td>
+                <td align="left" style="font-size: 12px;"><?php echo $medicamento->patologia; ?></td>
+                <!-- <td align="left" style="font-size: 12px;"><?php //echo $medicamento->indicacion; ?></td> -->
+                <td align="left" style="font-size: 12px;"><?php echo $medicamento->dosis; ?></td>
+                <td align="left" style="font-size: 12px;"><?php echo $medicamento->frecuencia; ?></td>
+                <td align="center">
+                    <style>
+                        .btn-link {
+                            border: none;
+                            outline: none;
+                            background: none;
+                            cursor: pointer;
+                            color: #0000EE;
+                            padding: 0;
+                            text-decoration: underline;
+                            font-family: inherit;
+                            font-size: inherit;
+                        }
+                    </style>
+                    <form action="<?php echo $this->usuario->ficha; ?>" method="post">
+                        <input type="hidden" name="cedula" value="<?php echo $this->usuario->cedula; ?>"/>
+                        <input type="hidden" name="medicamento" value="<?php echo $medicamento->id_medicamento; ?>" />
+                        <button type="submit" name="eliminar_m" id="eliminar_m" value="eliminar_m" class="btn-link" title="Eliminar medicamento"><?php echo $this->img('ico_eliminar.png') ?></button>
+                    </form>
+                    <!-- <a href="<?php //echo $this->url(array('module' => 'default','controller' => 'direccion', 'action' => 'ver', 'c' =>  $medicamento->cedula, 'm' => $medicamento->id_medicamento)); ?>" title="Eliminar"><?php //echo $this->img('ico_eliminar.png') ?></a> -->
+                </td>
+                
+            </tr>              
+        <?php 
+                endforeach;
+            else:
+        ?>
+            <tr>
+                <td colspan="5" align="center">Sin Medicamentos</td>
+            </tr>
+        <?php
+            endif;
+        ?>
+    </tbody>
+</table>

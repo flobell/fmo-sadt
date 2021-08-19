@@ -1,0 +1,66 @@
+<?php echo $this->form('EliminarForm', array('method' => Zend_Form::METHOD_POST, 'action' => $this->url())); ?>
+
+<?php 
+if ($this->rutas): ?>
+    </br>
+    <table class=" general table  table-striped table-bordered " summary="Eliminar Ruta" style="width:80%">
+        <tr>
+            <th colspan="22" align="center">Datos de la Ruta a Eliminar</th>
+        </tr>
+
+        <th align="right">Descripcion</th>
+        <th align="right">Horario</th>
+        <th align="right">Tiempo</th>
+        <th align="right">Distancia</th>
+
+        <?php foreach ($this->rutas as $row): ?>
+        <tr>
+            <td><?php echo $this->escape($row->descripcion); ?></td>
+            <td><?php echo $this->escape($row->horario_desc); ?></td>
+            
+            <?php if (!empty($row->tiempo)){ ?>
+            <td><?php echo $this->escape($row->tiempo); ?></td>
+            <?php }else{  ?>
+                <td><?php echo $this->escape('No hay tiempo registrado.'); ?></td>
+            <?php } ?>
+            
+            <?php if (!empty($row->distancia)){ ?>
+            <td><?php echo $this->escape($row->distancia); ?></td>
+            <?php }else{  ?>
+                <td><?php echo $this->escape('No hay distancia registrada.'); ?></td>
+            <?php } ?>    
+        </tr>
+        <?php endforeach; ?>   
+    </table>
+<?php endif; ?>
+
+<table class="general table  table-striped table-bordered" summary="Eliminar Tercero" style="width: 40%">
+    <?php if ($this->boton) { ?>
+
+        <tr>
+        <h1 style="text-transform: uppercase; text-align: center;">
+        </h1>
+        <td>
+            <p align="center">
+                <?php echo $this->formSubmit('btnVolver', 'Volver'); ?>
+            <p/>
+        </td>
+    </tr>
+<?php } else { ?>
+    <tr>
+    <h4 align="center">¿Seguro que desea eliminar la Ruta <span style="color: #D6291C"><?php echo $this->rutas_desc; ?></span>?</h4>
+
+    <td> 
+        <p align="center">
+            <?php echo $this->formSubmit('btnEliminar', 'Si'); ?>
+        <p/>
+    </td>
+    <td>
+        <p align="center">
+            <?php echo $this->formSubmit('btnEliminar', 'No'); ?>
+        <p/>
+    </td>
+<?php }
+?>
+
+</table>

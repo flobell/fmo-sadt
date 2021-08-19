@@ -1,0 +1,162 @@
+<?php echo $this->form('buscarForm', array('method' => Zend_Form::METHOD_POST, 'action' => $this->url(), 'enctype' => Zend_form::ENCTYPE_MULTIPART)); ?>
+
+<table class="general" summary="Sistema" style="width:50%">
+    <caption>Listado de Trabajadores Cargados</caption>
+    <tbody>
+        <tr>
+            <th align="right" width="30%">
+                <?php echo $this->form->getElement(Application_Form_Direccion::E_GERENCIA)->getLabel();
+                ?></th>
+            <td><?php
+                echo $this->form->getElement(Application_Form_Direccion::E_GERENCIA)->renderViewHelper(),
+                $this->form->getElement(Application_Form_Direccion::E_GERENCIA)->renderDescription(),
+                $this->form->getElement(Application_Form_Direccion::E_GERENCIA)->renderErrors();
+                ?> 
+            </td>
+        </tr><!--
+        <tr>
+            <th align="right" width="30%">
+                <?php echo $this->form->getElement(Application_Form_Direccion::E_RUTA)->getLabel();
+                ?></th>
+            <td><?php
+                echo $this->form->getElement(Application_Form_Direccion::E_RUTA)->renderViewHelper(),
+                $this->form->getElement(Application_Form_Direccion::E_RUTA)->renderDescription(),
+                $this->form->getElement(Application_Form_Direccion::E_RUTA)->renderErrors();
+                ?> 
+            </td>
+        </tr>-->
+                <tr>
+            <th align="right" width="30%">
+                <?php echo $this->form->getElement(Application_Form_Direccion::E_ESTADO)->getLabel();
+                ?></th>
+            <td><?php
+                echo $this->form->getElement(Application_Form_Direccion::E_ESTADO)->renderViewHelper(),
+                $this->form->getElement(Application_Form_Direccion::E_ESTADO)->renderDescription(),
+                $this->form->getElement(Application_Form_Direccion::E_ESTADO)->renderErrors();
+                ?> 
+            </td>
+        </tr>
+        <tr>
+            <th align="right" width="30%">
+                <?php echo $this->form->getElement(Application_Form_Direccion::E_MUNICIPIO)->getLabel();
+                ?></th>
+            <td><?php
+                echo $this->form->getElement(Application_Form_Direccion::E_MUNICIPIO)->renderViewHelper(),
+                $this->form->getElement(Application_Form_Direccion::E_MUNICIPIO)->renderDescription(),
+                $this->form->getElement(Application_Form_Direccion::E_MUNICIPIO)->renderErrors();
+                ?> 
+            </td>
+        </tr>
+        <tr>
+            <th align="right" width="30%">
+                <?php echo $this->form->getElement(Application_Form_Direccion::E_PARROQUIA)->getLabel();
+                ?></th>
+            <td><?php
+                echo $this->form->getElement(Application_Form_Direccion::E_PARROQUIA)->renderViewHelper(),
+                $this->form->getElement(Application_Form_Direccion::E_PARROQUIA)->renderDescription(),
+                $this->form->getElement(Application_Form_Direccion::E_PARROQUIA)->renderErrors();
+                ?> 
+            </td>
+        </tr>
+        <tr>
+            <th align="right" width="30%">
+                <?php echo $this->form->getElement(Application_Form_Direccion::E_REFERENCIA)->getLabel();
+                ?></th>
+            <td><?php
+                echo $this->form->getElement(Application_Form_Direccion::E_REFERENCIA)->renderViewHelper(),
+                $this->form->getElement(Application_Form_Direccion::E_REFERENCIA)->renderDescription(),
+                $this->form->getElement(Application_Form_Direccion::E_REFERENCIA)->renderErrors();
+                ?> 
+            </td>
+        </tr>
+        <tr>
+            <th align="right" width="30%">
+                <?php echo $this->form->getElement(Application_Form_Direccion::E_ZONA)->getLabel();
+                ?></th>
+            <td><?php
+                echo $this->form->getElement(Application_Form_Direccion::E_ZONA)->renderViewHelper(),
+                $this->form->getElement(Application_Form_Direccion::E_ZONA)->renderDescription(),
+                $this->form->getElement(Application_Form_Direccion::E_ZONA)->renderErrors();
+                ?> 
+            </td>
+        </tr>
+        <tr>
+            <th align="right" width="30%">
+                <?php echo $this->form->getElement(Application_Form_Direccion::E_LOCALIDAD)->getLabel();
+                ?></th>
+            <td><?php
+                echo $this->form->getElement(Application_Form_Direccion::E_LOCALIDAD)->renderViewHelper(),
+                $this->form->getElement(Application_Form_Direccion::E_LOCALIDAD)->renderDescription(),
+                $this->form->getElement(Application_Form_Direccion::E_LOCALIDAD)->renderErrors();
+                ?> 
+            </td>
+        </tr>          
+</table>
+<p align = 'center'>
+    <?php
+    echo $this->form->getElement(Application_Form_Direccion::E_ACEPTAR)->renderViewHelper();
+    ?>
+</p>
+<?php if ($this->listado) {
+    ?>
+    <table class="general" style="width:24%"><tr>
+            <th>Total de Trabajadores Cargados</th>
+            <td width = "8%"><?php echo count($this->listado); ?></td>
+        </tr>
+    </table>
+    <br/>
+    <table class="general" style="width:95%">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Gerencia</th>
+                <th width="7%">Ficha</th>
+                <th width="10%">Cedula</th>
+                <th>Nombre</td>
+                <th>Zona</th>
+                <th>Punto de Referencia</th>
+                <th>Localidad</th>
+                <th>Constancia</th>
+                <th>Detalle</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $i = 1;
+            foreach ($this->listado as $fila):
+                ?>
+                <tr>
+                    <td><?php echo $i++; ?></td>
+                    <td><?php echo $this->escape($fila->gerencia); ?></td>
+                    <td><?php echo $this->escape($fila->ficha); ?></td>
+                    <td><?php echo $this->escape($fila->cedula); ?></td>
+                    <td><?php echo $this->escape($fila->nombre . ' ' . $fila->apellido); ?></td>
+                    <td><?php echo $this->escape($fila->zona); ?></td>
+                    <td><?php echo $this->escape($fila->referencia); ?></td>
+                    <td><?php echo $this->escape($fila->desc_localidad); ?></td>
+                    <td width="2%" align="center">
+                        <?php if ($fila->archivo != '') { ?>
+                            <a href="<?php echo $this->url(array('controller' => 'archivo', 'id' => $fila->cedula, 'action' => 'ver')); ?>"title="Adjunto"><?php echo $this->img('ico_archivo_pdf.png'); ?>
+                            </a>
+                        <?php } else { ?>
+                            No ha Cargado.
+                        <?php } ?>
+                    </td>
+                    <td width="2%" align="center">
+                        <a href="<?php echo $this->url(array('id' => $fila->cedula, 'action' => 'ver')); ?>"title="Editar"><?php echo $this->img('ico_detalle.png'); ?>
+                        </a>
+                    </td>
+                </tr>
+                <?php
+            endforeach;
+            ?>
+        </tbody>
+    <?php } else {
+        ?>
+        <center><h1>
+                No Existen Trabajadores Cargados en el Área Seleccionada
+            </h1>
+        </center>
+    <?php }
+    ?>
+

@@ -1,0 +1,87 @@
+<?php echo $this->form('buscarForm', array('method' => Zend_Form::METHOD_POST, 'action' => $this->url(), 'enctype' => Zend_form::ENCTYPE_MULTIPART)); ?>
+
+<?php if ($this->form instanceof Application_Form_Trabajador) { ?>
+<legend>Sistema de actualización de direccion de domicilio de trabajadores</legend>
+<br>
+    <table class="general" summary="Sistema" style="width:50%">
+        <caption>Opción de Busqueda</caption>
+        <tbody>
+            <tr>
+                <th align="left">Ficha / Cedula:</th>
+                <td><?php
+                    echo $this->form->getElement(Application_Form_Trabajador::E_FICHA)->renderViewHelper(),
+                    $this->form->getElement(Application_Form_Trabajador::E_FICHA)->renderDescription(),
+                    $this->form->getElement(Application_Form_Trabajador::E_FICHA)->renderErrors();
+                    ?>
+            </tr>
+    </table>
+    <table border="0" align="center" width="50%">
+        <tr>
+            <td align="center">
+                <?php echo $this->form->getElement(Application_Form_Trabajador::E_BUSCAR)->renderViewHelper(); ?>
+                <?php echo $this->form->getElement(Application_Form_Trabajador::E_VOLVER)->renderViewHelper(); ?>
+            </td>        
+
+        </tr>
+    </table>
+    </form>
+<?php } ?>
+
+<?php if (count($this->paginacion) > 0 && !empty($this->paginacion)) {
+    ?>
+    <table class="general" style="width:24%"><tr>
+            <th>Total de Trabajadores Cargados</th>
+            <td width = "8%"><?php echo count($this->paginacion); ?></td>
+        </tr>
+    </table>
+    <br/>
+    <table class="general" style="width:70%">
+        <caption>Trabajadores Cargados</caption>
+        <thead>
+            <tr>
+                <th>Gerencia</th>
+                <th width="10%">Ficha</th>
+                <th width="20%">Cedula</th>
+                <th>Nombre</td>
+                <th width="10%">Constancia</th>
+                <th width="10%">Editar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            foreach ($this->paginacion as $fila):
+                ?>
+                <tr>
+                    <td><?php echo $this->escape($fila->gerencia); ?></td>
+                    <td><?php echo $this->escape($fila->ficha); ?></td>
+                    <td><?php echo $this->escape($fila->cedula); ?></td>
+                    <td><?php echo $this->escape($fila->nombre . ' ' . $fila->apellido); ?></td>
+
+                    <td width="2%" align="center">
+                        <?php if ($fila->archivo != '') { ?>
+                            <a href="<?php echo $this->url(array('controller' => 'archivo', 'id' => $fila->cedula, 'action' => 'ver')); ?>"title="Adjunto"><?php echo $this->img('ico_archivo_pdf.png'); ?>
+                            </a>
+                        <?php } else { ?>
+                            No ha Cargado.
+                        <?php } ?>
+                    </td>
+                    <td width="2%" align="center">
+                        <a href="<?php echo $this->url(array('id' => $fila->cedula, 'action' => 'ver')); ?>"title="Editar"><?php echo $this->img('ico_editar.png'); ?>
+                        </a>
+                    </td>
+                </tr>
+                <?php
+            endforeach;
+            ?>
+        </tbody>
+    <?php }
+    ?>
+    <?php
+    if ($this->paginacion):
+        echo $this->paginationControl($this->paginacion);
+    endif;
+    ?>
+    <?php
+    echo '</form>';
+    ?>
+

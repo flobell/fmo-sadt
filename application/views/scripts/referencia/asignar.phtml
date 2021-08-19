@@ -1,0 +1,37 @@
+<?php echo $this->form('buscarForm', array('method' => Zend_Form::METHOD_POST, 'action' => $this->url(), 'enctype' => Zend_form::ENCTYPE_MULTIPART)); ?>
+
+<table class="general" summary="Sistema" style="width:50%">
+    <caption>Asignar Referencia a Zona</caption>
+    <tbody>
+            <tr>
+                <th align="right" width="30%">
+                    <?php echo $this->form->getElement(Application_Form_Asignar::E_REFERENCIA)->getLabel();
+                    ?></th>
+                <td><?php
+                    echo $this->form->getElement(Application_Form_Asignar::E_REFERENCIA)->renderViewHelper(),
+                    $this->form->getElement(Application_Form_Asignar::E_REFERENCIA)->renderDescription(),
+                    $this->form->getElement(Application_Form_Asignar::E_REFERENCIA)->renderErrors();
+                    ?> 
+                </td>
+            </tr>
+            
+            
+        <tr>
+            <th align="right" width="30%">
+                <?php echo $this->form->getElement(Application_Form_Asignar::E_PARROQUIA)->getLabel();
+                ?></th>
+            <td><?php
+                echo $this->form->getElement(Application_Form_Asignar::E_PARROQUIA)->renderViewHelper(),
+                $this->form->getElement(Application_Form_Asignar::E_PARROQUIA)->renderDescription(),
+                $this->form->getElement(Application_Form_Asignar::E_PARROQUIA)->renderErrors();
+                ?> 
+            </td>
+        </tr>
+        
+</table>
+<p align = 'center'>
+    <?php
+    echo $this->form->getElement(Application_Form_Asignar::E_GUARDAR)->renderViewHelper();
+    ?>
+</p>
+

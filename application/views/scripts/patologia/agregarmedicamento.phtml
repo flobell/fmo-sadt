@@ -1,0 +1,189 @@
+
+<?php echo $this->form('buscarForm', array('method' => Zend_Form::METHOD_POST, 'action' => $this->url(), 'enctype' => Zend_form::ENCTYPE_MULTIPART)); ?>
+<table class="general" style="width: 50%">
+    <caption>Información del Trabajador</caption>
+    <tr>
+        <th>Ficha</th>
+        <td><?php echo $this->escape($this->usuario->ficha); ?></td>
+        <th>Cedula</th>
+        <td><?php echo $this->escape($this->usuario->cedula); ?></td>
+    </tr>
+    <tr>
+        <th>Nombre</th>
+        <td><?php echo $this->escape($this->usuario->nombre), ' ', $this->escape($this->usuario->apellido); ?></td>
+        <th>Cargo</th>
+        <td><?php echo $this->escape($this->usuario->{Fmo_Model_Personal::CARGO}); ?></td>
+    </tr>
+    <tr>
+        <th>Gerencia</th>
+        <td>
+            <?php if(count($this->centro)<3){
+                echo $this->escape($this->centro[1]->centro_costo);
+            } else{
+                echo $this->escape($this->centro[2]->centro_costo);
+            }
+            ?>
+        </td>
+        <th>Departamento</th>
+        <td>
+             <?php if(count($this->centro)<1){
+                echo $this->escape($this->centro[0]->centro_costo);
+            } else{
+                echo $this->escape($this->centro[1]->centro_costo);
+            }
+            ?>
+        </td>
+    </tr>
+</table>
+
+<table class="general" style="width: 50%">
+    <caption>Patología y Medicamento</caption>
+    <tbody>
+        <tr>
+            <th style="text-align: left;">
+                <?php
+                    echo $this->formulario->getElement(Application_Form_Medicamento::E_PATOLOGIA)->getLabel();
+                ?>
+            </th>
+            <td>
+                <?php
+                    echo $this->formulario->getElement(Application_Form_Medicamento::E_PATOLOGIA)->renderViewHelper(),
+                    $this->formulario->getElement(Application_Form_Medicamento::E_PATOLOGIA)->renderDescription(),
+                    $this->formulario->getElement(Application_Form_Medicamento::E_PATOLOGIA)->renderErrors();
+                ?> 
+            </td>
+        </tr>
+        <tr>  
+            <th style="text-align: left;">
+                <?php
+                    echo $this->formulario->getElement(Application_Form_Medicamento::E_MEDICAMENTO)->getLabel();
+                ?>
+            </th>
+            <td>
+                <?php
+                    echo $this->formulario->getElement(Application_Form_Medicamento::E_MEDICAMENTO)->renderViewHelper(),
+                    $this->formulario->getElement(Application_Form_Medicamento::E_MEDICAMENTO)->renderDescription(),
+                    $this->formulario->getElement(Application_Form_Medicamento::E_MEDICAMENTO)->renderErrors();
+                ?> 
+            </td>
+        </tr>
+        <tr>  
+            <th style="text-align: left;">
+                <?php
+                    echo $this->formulario->getElement(Application_Form_Medicamento::E_INFORME)->getLabel();
+                ?>
+            </th>
+            <td>
+                <?php
+                    echo $this->formulario->getElement(Application_Form_Medicamento::E_INFORME)->renderFile(),
+                    $this->formulario->getElement(Application_Form_Medicamento::E_INFORME)->renderDescription(),
+                    $this->formulario->getElement(Application_Form_Medicamento::E_INFORME)->renderErrors();
+                ?>
+            </td>
+        </tr>
+        <!-- <tr>
+            <th colspan="2" style="text-align: center;">
+                <?php
+                    // echo $this->formulario->getElement(Application_Form_Medicamento::E_INDICACION)->getLabel();
+                ?>
+            </th>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <?php
+                    // echo $this->formulario->getElement(Application_Form_Medicamento::E_INDICACION)->renderViewHelper(),
+                    // $this->formulario->getElement(Application_Form_Medicamento::E_INDICACION)->renderDescription(),
+                    // $this->formulario->getElement(Application_Form_Medicamento::E_INDICACION)->renderErrors();
+                ?> 
+            </td>
+        </tr> -->
+    </tbody>
+</table>
+
+<table class="general" style="width: 50%">
+    <caption>Indicación del Medicamento</caption>
+    <tbody>
+        <tr>  
+            <th style="text-align: left; width: 20%;"><?php echo $this->formulario->getElement(Application_Form_Medicamento::E_DOSIS)->getLabel();?></th>
+            <td>
+                Una (1) unidad (pastilla, tableta, gota, etc..) cada
+                <?php
+                    echo $this->formulario->getElement(Application_Form_Medicamento::E_DOSIS)->renderViewHelper(),
+                    $this->formulario->getElement(Application_Form_Medicamento::E_DOSIS)->renderDescription(),
+                    $this->formulario->getElement(Application_Form_Medicamento::E_DOSIS)->renderErrors();
+                ?> 
+                hora(s)
+            </td>
+        </tr>
+        <tr>
+            <th style="text-align: left;"><?php echo $this->formulario->getElement(Application_Form_Medicamento::E_FRECUENCIA_TIPO)->getLabel();?></th>
+            <td>
+                <?php
+                    echo $this->formulario->getElement(Application_Form_Medicamento::E_FRECUENCIA_TIPO)->renderViewHelper(),
+                    $this->formulario->getElement(Application_Form_Medicamento::E_FRECUENCIA_TIPO)->renderDescription(),
+                    $this->formulario->getElement(Application_Form_Medicamento::E_FRECUENCIA_TIPO)->renderErrors();
+                ?> 
+            </td>
+        </tr>
+        <tr id='tiempo_tr' style="display: none;">
+            <th style="text-align: left;"><?php echo $this->formulario->getElement(Application_Form_Medicamento::E_FRECUENCIA)->getLabel();?></th>
+            <td>
+                Por
+                <?php
+                    echo $this->formulario->getElement(Application_Form_Medicamento::E_FRECUENCIA)->renderViewHelper(),
+                    $this->formulario->getElement(Application_Form_Medicamento::E_FRECUENCIA)->renderDescription(),
+                    $this->formulario->getElement(Application_Form_Medicamento::E_FRECUENCIA)->renderErrors();
+                ?>
+                &nbsp;
+                <?php
+                    echo $this->formulario->getElement(Application_Form_Medicamento::E_FRECUENCIA_UNIDAD)->renderViewHelper(),
+                    $this->formulario->getElement(Application_Form_Medicamento::E_FRECUENCIA_UNIDAD)->renderDescription(),
+                    $this->formulario->getElement(Application_Form_Medicamento::E_FRECUENCIA_UNIDAD)->renderErrors();
+                ?> 
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<br>
+
+<table class="general" style="width: 20%">
+    <tbody>
+        <tr align="center">
+            <td>
+                <?php
+                    echo $this->formulario->getElement(Application_Form_Medicamento::E_ACEPTAR)->renderViewHelper();
+                ?>
+            </td>
+            <td>
+                <?php if($this->paginaProveniente == "1"): ?>
+                    <a class="button" href="<?php echo $this->url(array('module' => 'default', 'controller' => 'direccion', 'action' => 'ver', 'page' => $this->page), null, true); ?>"><?php echo $this->img('ico_volver.png'); ?> Volver</a>
+                <?php else: ?>
+                    <a class="button" href="<?php echo $this->url(array('module' => 'default', 'controller' => 'administracion', 'action' => 'ver', 'id' => $this->usuario_id), null, true); ?>"><?php echo $this->img('ico_volver.png'); ?> Volver</a>
+                <?php endif; ?>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#medicamento').select2({
+            //minimumInputLength: 1,
+            // placeholder: 'Seleccione el medicamento...',
+            minimumResultsForSearch : 10
+        });
+
+        $('#patologia').select2({
+            //minimumInputLength: 1,
+            // placeholder: 'Seleccione una patologia asociada...',
+            minimumResultsForSearch : 10
+        });
+        
+    }); 
+
+    function mostrarTiempo(element)
+    {
+        document.getElementById('tiempo_tr').style.display = element.value == '2' ? 'table-row' : 'none';
+    }
+</script>
